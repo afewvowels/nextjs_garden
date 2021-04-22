@@ -1,0 +1,41 @@
+/* FOOTER STYLE RULES */
+.footerWrapper {
+  align-self: center;
+  justify-self: center;
+}
+
+.footerWrapper > h6 {
+  text-align: center;
+}
+
+/* HEADER STYLE RULES */
+.navList {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.navList > li, .navListSimple > li {
+  cursor: pointer;
+  padding: 0 0.5rem;
+}
+
+.navList > li:hover, .navListSimple > li:hover {
+  cursor: pointer;
+  text-decoration: underline;
+}
+
+.navTitle {
+  cursor: pointer;
+}
+
+.navWrapper {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+}

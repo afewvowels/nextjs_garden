@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 25.2.1, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg version="1.1" id="Layer_1" focusable="false" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+	 x="0px" y="0px" viewBox="0 0 512 512" style="enable-background:new 0 0 512 512;" xml:space="preserve">
+  <defs><style type="text/css"><![CDATA[
+    #icon_primary { fill: lightseagreen; }
+    #icon_secondary { fill: lightgreen; }
+    @media (prefers-color-scheme: dark) {
+      #icon_primary { fill: lightgreen; }
+      #icon_secondary { fill: lightseagreen; }
+    }
+  ]]>]</style></defs>
+  <g>
+    <path id="icon_secondary" d="M512,32c0,115.9-88,211.1-200.7,222.8c-10.7-40.1-30.9-77-59-107.6
+      C290.6,78.5,363.8,32,448,32H512z"/>
+    <path id="icon_primary" d="M288,320v144c0,8.8-7.2,16-16,16h-32c-8.8,0-16-7.2-16-16V320C100.3,320,0,219.7,0,96h64
+      C187.7,96,288,196.3,288,320z"/>
+  </g>
+</svg>
