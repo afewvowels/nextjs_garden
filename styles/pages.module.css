@@ -1,3 +1,48 @@
+/* GARDEN LAYOUT IMAGES */
+.layoutDiagramWrapperFront {
+  aspect-ratio: 300 / 79;
+  display: grid;
+  grid-template-columns: repeat(15, 1fr);
+  grid-template-rows: repeat(6, 1fr);
+}
+
+.layoutDiagramWrapperSide {
+  aspect-ratio: 208 / 150;
+  display: grid;
+  grid-template-columns: repeat(20, 1fr);
+  grid-template-rows: repeat(16, 1fr);
+}
+
+.layoutDiagramWrapperRear {
+  aspect-ratio: 144 / 150;
+  display: grid;
+  grid-template-columns: repeat(20, 1fr);
+  grid-template-rows: repeat(24, 1fr);
+}
+
 .layoutDiagramWrapper > img {
-  padding: 2rem 0;
+  grid-column: 1 / -1;
+  grid-row: 1 / -1;
+}
+
+/* GRID CARD LAYOUT */
+.cardLayoutColumn {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: auto;
+  grid-row-gap: 0.666rem;
+  height: fit-content;
+}
+
+.cardLayoutWrapper {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-rows: auto;
+  grid-gap: 0.666rem;
+}
+
+@media only screen and (max-width: 666px) {
+  .cardLayoutWrapper {
+    grid-template-columns: 1fr;
+  }
 }

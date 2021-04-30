@@ -118,7 +118,7 @@ const Index = () => {
 
     if (prototypeResponse.status == 201) {
       console.log('Successfully created prototype')
-      Router.replace('/api/prototypes')
+      Router.replace('/prototypes')
     } else {
       console.error('Error creating prototype')
       set_error_msg(await prototypeResponse.text())

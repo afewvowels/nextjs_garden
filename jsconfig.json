@@ -7,7 +7,7 @@
           "@styles/*": ["styles/*"],
           "@public/*": ["public/*"],
           "@templates/*": ["components/templates/*"],
-          "@random/*": ["components/modules/random/*"],
+          "@modules/*": ["components/modules/*"],
           "@utils/*": ["utils/*"]
       }
   }

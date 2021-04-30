@@ -1,6 +1,8 @@
 import React from 'react'
 import Router from 'next/router'
 
+import styles from '@styles/elements.module.css'
+
 const ImageCard = ({ image }) => {
   const deleteImage = async () => {
     const deleteRes = await fetch('/api/images/' + image.uuid, {
@@ -16,12 +18,16 @@ const ImageCard = ({ image }) => {
   }
 
   return(<>
-    <div>
+    <div className={styles.cardWrapper}>
       <div>
         <p>UUID</p>
         <p>{image.uuid}</p>
       </div>
       <div>
+        <p>Date</p>
+        <p>{image.date}</p>
+      </div>
+      <div className={styles.cardImageWrapper}>
         <img src={image.base64} />
       </div>
       <div>
