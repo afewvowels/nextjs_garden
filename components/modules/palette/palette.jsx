@@ -5,8 +5,8 @@ export function initialize() {
     palette = palette.split(',')
     if (palette.length != 4) throw new Error('localStorage palette not correct size...regenerating')
     let root = document.documentElement
-    root.style.setProperty('--background-color', palette[0])
-    root.style.setProperty('--foreground-color', palette[1])
+    root.style.setProperty('--background-color', '#' + palette[0])
+    root.style.setProperty('--foreground-color', '#' + palette[1])
   } catch {
     randomSet()
   }
@@ -15,7 +15,7 @@ export function initialize() {
 export async function randomSet() {
   let palettesArr = []
   try {
-    palettesArr = localStorage.getItem('palette')
+    palettesArr = localStorage.getItem('palettes')
     palettesArr = palettesArr.split(',')
     if (palettesArr.length < 4) {
       palettesArr = []
@@ -42,7 +42,7 @@ export async function randomSet() {
     let palettesRes
     await fetch('/api/palettes')
       .then(res => res.json())
-      .then(data => paletteRes = data)
+      .then(data => palettesRes = data)
 
     palettesArr = new Array(0)
     palettesRes.map(palette => {
@@ -64,14 +64,14 @@ export async function randomSet() {
   bgIndex = (Math.random() > 0.5) ? 0 : 1
   fgIndex = 1 - bgIndex
 
-  palette[0] = '#' + palettesArr[index][fgIndex]
-  palette[1] = '#' + palettesArr[index][bgIndex]
+  palette[0] = palettesArr[index][fgIndex]
+  palette[1] = palettesArr[index][bgIndex]
   palette[2] = palettesArr[index][fgIndex + 2]
   palette[3] = palettesArr[index][bgIndex + 2]
 
   localStorage.setItem('palette', palette)
 
   let root = document.documentElement
-  root.style.setProperty('--background-color', palette[0])
-  root.style.setProperty('--foreground-color', palette[1])
+  root.style.setProperty('--background-color', '#' + palette[0])
+  root.style.setProperty('--foreground-color', '#' + palette[1])
 }

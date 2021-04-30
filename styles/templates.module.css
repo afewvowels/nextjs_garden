@@ -1,7 +1,26 @@
 /* FOOTER STYLE RULES */
+.footerPaletteButton {
+  height: 100%;
+  border: 1px solid var(--foreground-color);
+  border-radius: 0.33rem;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  width: fit-content;
+  padding: 1rem;
+}
+
+.footerPaletteButton > svg {
+  height: 1rem;
+  width: auto;
+  margin-right: 0.333rem;
+}
+
 .footerWrapper {
   align-self: center;
   justify-self: center;
+  padding: 1rem 0;
 }
 
 .footerWrapper > h6 {
