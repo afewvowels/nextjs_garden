@@ -1,25 +1,26 @@
 import React from 'react'
 import Link from 'next/link'
 
-import SimpleTitle from '@components/templates/SimpleTitle'
+import Title from '@components/templates/Title'
 
 import templatesStyles from '@styles/templates.module.css'
 
-const Index = () => {
+const Index = ({plots}) => {
   return(<>
-    <SimpleTitle title='Plots' link='plots' />
+    <Title title='Plots' addUrl='/plots/add' />
     <ul className={templatesStyles.navListSimple}>
-      <Link href='/plots/front'>
-        <li>Front</li>
-      </Link>
-      <Link href='/plots/side'>
-        <li>Side</li>
-      </Link>
-      <Link href='/plots/rear'>
-        <li>Rear</li>
-      </Link>
+      {plots.map((plot, index) => {
+        return <li><Link index={index} href={`/plots/${plot.uuid}`}>{plot.name}</Link></li>
+      })}
     </ul>
   </>)
+}
+
+export async function getServerSideProps() {
+  let res = await fetch(`${process.env.NEXT_PUBLIC_URL}api/plots`)
+  let plots = await res.json()
+
+  return { props: { plots } }
 }
 
 export default Index

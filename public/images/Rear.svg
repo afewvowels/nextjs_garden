@@ -2,7 +2,7 @@
   <defs>
     <style>.cls-1{
       fill:none;
-      stroke:#231f20;
+      stroke:var(--foreground-color);
       stroke-miterlimit:10;
       stroke-width:2;
       stroke-linecap:round;

@@ -1,4 +1,6 @@
 import React, { useState, useCallback } from 'react'
+import PlotLayout from '@public/images/Rear.svg'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
 import SimpleTitle from '@components/templates/SimpleTitle'
 
@@ -29,13 +31,12 @@ const Index = () => {
   }
 
   return(<>
-    <SimpleTitle title='Rear' link='plots' />
-    <button onClick={toggleGridState}>{show_grid ? 'Hide Grid' : 'Show Grid'}</button>
+    <span className={styles.titleWrapper}>
+      <SimpleTitle title='Rear' link='plots' />
+      <FontAwesomeIcon icon={['far', 'th']} onClick={toggleGridState} />
+    </span>
     <div className={`${styles.layoutDiagramWrapper} ${styles.layoutDiagramWrapperRear}`} ref={LabelsRef}>
-      <img
-        src='/images/Rear.svg'
-        alt='Rear garden layout diagram'
-      />
+      <PlotLayout />
     </div>
   </>)
 }

@@ -12,6 +12,31 @@ export function initialize() {
   }
 }
 
+export function invert() {
+  let palette
+  palette = localStorage.getItem('palette')
+  try {
+    palette = palette.split(',')
+    if (palette.length != 4) throw new Error('localStorage palette not correct size...regenerating')
+
+    let temp = palette[0]
+
+    palette[0] = palette[1]
+    palette[1] = temp
+    temp = palette[2]
+    palette[2] = palette[3]
+    palette[3] = temp
+
+    localStorage.setItem('palette', palette)
+
+    let root = document.documentElement
+    root.style.setProperty('--background-color', '#' + palette[0])
+    root.style.setProperty('--foreground-color', '#' + palette[1])
+  } catch {
+    randomSet()
+  }
+}
+
 export async function randomSet() {
   let palettesArr = []
   try {

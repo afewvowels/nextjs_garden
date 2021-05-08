@@ -9,19 +9,49 @@ import { v4 as uuidv4 } from 'uuid'
 import Compressor from 'compressorjs'
 import { isMobile } from 'react-device-detect'
 
-const Index = () => {
+const Index = ({tags}) => {
   let fileReader
 
   const [uuid, set_uuid] = useState('')
   const [name, set_name] = useState('')
   const [sci_name, set_sci_name] = useState('')
   const [description, set_description] = useState('')
+  const [tag_uuids, set_tag_uuids] = useState([])
+  const [new_tag, set_new_tag] = useState('')
   const [image_uuids, set_image_uuids] = useState([])
   const [image_base64s, set_image_base64s] = useState([])
   const [image_base64, set_image_base64] = useState('')
   const [image_description, set_image_description] = useState('')
   const [image_date, set_image_date] = useState('')
   const [error_msg, set_error_msg] = useState('')
+
+  const tagsRef = useCallback(node => {
+    if (node != null) {
+      node.innerHTML = ''
+      if (tag_uuids.length == 0) {
+        node.insertAdjacentHTML(`beforeend`, `<li>None</li>`)
+      }
+      if (tag_uuids.length != 0) {
+        tag_uuids.forEach(uuid => {
+          tags.forEach(tag => {
+            if (tag.uuid == uuid) {
+              node.insertAdjacentHTML(`beforeend`, `<li>${tag.name}</li>`)
+            }
+          })
+        })
+      }
+    }
+  }, [tag_uuids])
+
+  const tagSelectRef = useCallback(node => {
+    if (node != null) {
+      node.innerHTML = ''
+      node.insertAdjacentHTML('beforeend', '<option value="none">Select a tag</option>')
+      tags.forEach(tag => {
+        node.insertAdjacentHTML('beforeend', `<option value=${tag.uuid}>${tag.name}</option>`)
+      })
+    }
+  }, [tags])
 
   const imageRef = useCallback(node => {
     if (node != null) {
@@ -43,6 +73,14 @@ const Index = () => {
 
   const generateIdentifiers = () => {
     set_uuid(uuidv4())
+  }
+
+  const addNewTag = () => {
+    if (new_tag != 'none' && new_tag != '') {
+      set_tag_uuids(tag_uuids =>  [...tag_uuids, new_tag])
+    } else {
+      set_error_msg('Error adding new tag')
+    }
   }
 
   const generateDate = () => {
@@ -107,7 +145,8 @@ const Index = () => {
       name: name,
       scientific_name: sci_name,
       description: description,
-      image_uuids: image_uuids
+      image_uuids: image_uuids,
+      tag_uuids: tag_uuids
     }
 
     const prototypeResponse = await fetch('/api/prototypes', {
@@ -139,6 +178,12 @@ const Index = () => {
         value={image_date}
         readOnly={true}
         onChange={e => set_uuid(e.target.value)}/>
+    </div>
+    <div>
+      <label>Description</label>
+      <textarea
+        value={image_description}
+        onChange={e => set_image_description(e.target.value)}/>
     </div>
     <div>
       <div ref={imageRef}></div>
@@ -183,8 +228,25 @@ const Index = () => {
         value={description}
         onChange={e => set_description(e.target.value)}/>
     </div>
+    <div>
+      <label>Tags</label>
+      <ul ref={tagsRef}></ul>
+      <select
+        ref={tagSelectRef}
+        value={new_tag}
+        onChange={e => set_new_tag(e.target.value)}
+      />
+      <button onClick={addNewTag}>Add Tag</button>
+    </div>
     <button onClick={handleCreatePrototype}>Create</button>
   </>)
+}
+
+export async function getServerSideProps() {
+  let res = await fetch(`${process.env.NEXT_PUBLIC_URL}api/tags`)
+  let tags = await res.json()
+
+  return { props: { tags } }
 }
 
 export default Index

@@ -1,4 +1,11 @@
 /* PROTOTYPE CARD */
+.cardButtonWrapper {
+  display: grid;
+  grid-template-rows: auto;
+  grid-template-columns: 1fr;
+  grid-gap: 0.5rem;
+}
+
 .cardButtonWrapper > button {
   height: 2rem;
   width: 100%;
@@ -8,6 +15,24 @@
   border-radius: 0.333rem;
   font-weight: var(--font-weight-heavy);
   cursor: pointer;
+}
+
+.cardGalleryWrapper {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-rows: auto;
+  grid-gap: 0.5rem;
+  width: 100%;
+}
+
+.cardGalleryWrapper > span > img {
+  max-width: 100%;
+  max-height: 100%;
+}
+
+.cardImageWrapper > span {
+  width: 100%;
+  height: 100%;
 }
 
 .cardImageWrapper > img {
@@ -55,6 +80,7 @@
   justify-content: space-between;
   width: 100%;
   height: 1.5rem;
+  cursor: pointer;
 }
 
 .cardTitle > svg {

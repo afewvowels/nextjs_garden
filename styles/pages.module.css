@@ -20,7 +20,7 @@
   grid-template-rows: repeat(24, 1fr);
 }
 
-.layoutDiagramWrapper > img {
+.layoutDiagramWrapper > svg {
   grid-column: 1 / -1;
   grid-row: 1 / -1;
 }
@@ -45,4 +45,38 @@
   .cardLayoutWrapper {
     grid-template-columns: 1fr;
   }
+}
+
+/* TITLE AND SVG WRAPPER */
+.titleWrapper {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+.titleWrapper > svg {
+  height: 1.25rem;
+  width: auto;
+  padding-left: 0.5rem;
+}
+
+/* SELECT WRAPPER STYLING */
+.pageSelectWrapper {
+  width: 100%;
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: auto;
+  grid-gap: 0.5rem;
+  border: 2px solid var(--foreground-color);
+  border-radius: 0.5rem;
+  padding: 0.666rem;
+}
+
+.pageSelectWrapper > select {
+  background-color: var(--background-color);
+  color: var(--foreground-color);
+  border: 2px solid var(--foreground-color);
+  border-radius: 0.25rem;
+  padding: 0.25rem;
 }

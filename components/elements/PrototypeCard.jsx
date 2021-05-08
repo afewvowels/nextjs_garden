@@ -27,9 +27,28 @@ function PrototypeImage({uuid}) {
   return <img src={image.base64} alt={image.description} />
 }
 
+function PrototypeDetailImage({uuid}) {
+  const { image, isLoading, isError } = useImage(uuid)
+
+  if (isLoading) return (
+    <span><FontAwesomeIcon icon={['far', 'atom-alt']} /></span>
+  )
+
+  if (isError) return (
+    <span><FontAwesomeIcon icon={['far', 'exclamation']} /></span>
+  )
+
+  return (<>
+    <img src={image.base64} alt={image.description} />
+    <p>{image.date}</p>
+    <p>{image.description}</p>
+  </>)
+}
+
 const PrototypeCard = ({prototype}) => {
   const [edit_url, set_edit_url] = useState('')
   const [collapsed, set_collapsed] = useState(true)
+  const [base64, set_base64] = useState(prototype.image_uuids[0])
 
   useEffect(() => {
     set_edit_url('/prototypes/edit/' + prototype.uuid)
@@ -49,12 +68,21 @@ const PrototypeCard = ({prototype}) => {
     }
   }
 
+  const editPrototype = () => {
+    Router.push('/prototypes/edit/' + prototype.uuid)
+  }
+
   const openCard = () => {
     set_collapsed(false)
   }
 
   const closeCard = () => {
     set_collapsed(true)
+  }
+
+  const updateActiveImage = (index) => {
+    console.log('active index: ' + index)
+    set_base64(index)
   }
 
   if (collapsed) {
@@ -78,12 +106,16 @@ const PrototypeCard = ({prototype}) => {
           <p>{prototype.description}</p>
         </div>
         <div className={styles.cardImageWrapper}>
-          {prototype.image_uuids.map(uuid => {
-            return <PrototypeImage uuid={uuid} />
+          <PrototypeDetailImage uuid={base64} />
+        </div>
+        <div className={styles.cardGalleryWrapper}>
+          {prototype.image_uuids.map((uuid, index) => {
+            return <span onClick={() => updateActiveImage(uuid)}><PrototypeImage uuid={uuid} index={index} /></span>
           })}
         </div>
         <div className={styles.cardButtonWrapper}>
           <button onClick={deletePrototype}>Delete</button>
+          <button onClick={editPrototype}>Edit</button>
         </div>
       </div>
     )

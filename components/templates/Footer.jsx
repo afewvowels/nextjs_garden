@@ -2,6 +2,7 @@ import React, { useEffect, useState, useCallback } from 'react'
 import { useRouter } from 'next/router'
 import { randomSet } from '@components/modules/palette/palette.jsx'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { invert } from '@components/modules/palette/palette'
 
 import styles from '@styles/templates.module.css'
 
@@ -47,6 +48,7 @@ const Footer = () => {
       <FontAwesomeIcon icon={['fas', 'palette']}/>
       <p ref={paletteRef}></p>
     </span>
+    <FontAwesomeIcon icon={['far', 'sync-alt']} onClick={invert} />
   </footer>)
 }
 

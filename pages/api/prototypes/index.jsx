@@ -22,7 +22,8 @@ handler.post(async (req, res) => {
     name: req.body.name,
     scientific_name: req.body.scientific_name,
     description: req.body.description,
-    image_uuids: req.body.image_uuids
+    image_uuids: req.body.image_uuids,
+    tag_uuids: req.body.tag_uuids
   }
 
   await db

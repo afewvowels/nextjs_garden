@@ -1,4 +1,6 @@
+import React, { useEffect } from 'react'
 import Head from 'next/head'
+import { initialize } from '@components/modules/palette/palette'
 
 import Layout from '@templates/Layout'
 
@@ -13,6 +15,10 @@ import { fad } from '@fortawesome/pro-duotone-svg-icons'
 library.add(fas, far, fal, fad)
 
 function MyApp({ Component, pageProps }) {
+  useEffect(() => {
+    initialize()
+  }, [])
+
   return (<Layout>
     <Head>
       <title>Garden</title>

@@ -21,10 +21,16 @@
   align-self: center;
   justify-self: center;
   padding: 1rem 0;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
 }
 
-.footerWrapper > h6 {
-  text-align: center;
+.footerWrapper > svg {
+  height: 1.25rem;
+  width: auto;
+  margin-left: 1rem;
 }
 
 /* HEADER STYLE RULES */
@@ -61,7 +67,7 @@
 
 /* TITLE && SIMPLE TITLE */
 .titleWrapper {
-  width: 100%;
+  width: auto;
   height: 1.5rem;
   display: flex;
   flex-direction: row;
